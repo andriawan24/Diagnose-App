@@ -9,4 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Symptom extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'code',
+        'name',
+        'question',
+        'description'
+    ];
 }

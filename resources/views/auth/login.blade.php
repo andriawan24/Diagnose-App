@@ -41,8 +41,9 @@
                 <p>Enter <strong>demo</strong>/<strong>demo</strong> as login and password.</p>
             </div>
             
-            <form method="get" role="form" id="form_login">
-                
+            <form method="POST" action="{{ route('login.post') }}" role="form" id="form_login">
+                @csrf
+
                 <div class="form-group">
                     
                     <div class="input-group">
@@ -50,13 +51,12 @@
                             <i class="entypo-user"></i>
                         </div>
                         
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" autocomplete="off" />
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Username" autocomplete="off" />
                     </div>
                     
                 </div>
                 
                 <div class="form-group">
-                    
                     <div class="input-group">
                         <div class="input-group-addon">
                             <i class="entypo-key"></i>
@@ -64,8 +64,13 @@
                         
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
                     </div>
-                
                 </div>
+
+                @if (Session::has('error'))
+                    <div class="form-group">
+                        <p class="text-error">{{ Session::get('error') }}</p>
+                    </div>
+                @endif
                 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block btn-login">
@@ -73,44 +78,13 @@
                         Login In
                     </button>
                 </div>
-                
-                <!-- 
-                
-                You can also use other social network buttons
-                <div class="form-group">
-                
-                    <button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left twitter-button">
-                        Login with Twitter
-                        <i class="entypo-twitter"></i>
-                    </button>
-                    
-                </div>
-                
-                <div class="form-group">
-                
-                    <button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left google-button">
-                        Login with Google+
-                        <i class="entypo-gplus"></i>
-                    </button>
-                    
-                </div> -->
-                
             </form>
-            
-            
             <div class="login-bottom-links">
-                
                 <a href="extra-forgot-password.html" class="link">Forgot your password?</a>
-                
                 <br />
-                
                 <a href="#">ToS</a>  - <a href="#">Privacy Policy</a>
-                
             </div>
-            
         </div>
-        
     </div>
-    
 </div>
 @endsection
