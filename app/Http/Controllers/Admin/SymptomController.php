@@ -45,6 +45,37 @@ class SymptomController extends Controller
         return redirect()->route('symptom.index')->with('success', "Gejala " . $symptom->code . " Berhasil ditambahkan");
     }
 
+    public function edit($id) {
+        $symptom = Symptom::findOrFail(decode($id));
+
+        return view('pages.admin.symptom.edit', ['symptom' => $symptom]);
+    }
+
+    public function update(Request $request, $id) {
+        $validator = Validator::make($request->all(), [
+            'code' => ['required', 'unique:symptoms,code'],
+            'name' => ['required'],
+            'question' => ['required', 'ends_with:?'],
+            'description' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'Silahkan periksa kembali data')->withInput()->withErrors($validator);
+        }
+
+        $data = [
+            'code' => $request->code,
+            'name' => $request->name,
+            'question' => $request->question,
+            'description' => $request->description
+        ];
+
+        $symptom = Symptom::findOrFail(decode($id));
+        $symptom->update($data);
+
+        return redirect()->route('symptom.index')->with('success', "Gejala " . $symptom->code . " Berhasil diubah");
+    }
+
     public function delete($id) {
         $symptom = Symptom::findOrFail(decode($id));
 

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Ubah Gejala')
+@section('title', 'Tambah Gejala')
 
 @section('content')
 
@@ -9,27 +9,29 @@
             <a href="{{ route('admin.index') }}"><i class="fa-home"></i>Home</a>
         </li>
         <li>
-            <a href="{{ route('symptom.index') }}"><i class="fa-home"></i>Gejala</a>
+            <a href="{{ route('disease.index') }}"><i class="fa-home"></i>Gangguan</a>
+        </li>
+        <li>
+            <a href="{{ route('disease.index') }}"><i class="fa-home"></i>Detail Gangguan</a>
         </li>
         <li class="active">
-            <strong>Ubah</strong>
+            <strong>Tambah Gejala</strong>
         </li>
     </ol>
 
-    <h2>Ubah Gejala</h2>
+    <h2>Tambah Gejala</h2>
 
     <br />
 
     <!-- Main Content -->
     <div class="panel panel-primary">
         <div class="panel-body">
-            <form action="{{ route('symptom.update', encode($symptom->id)) }}" method="POST">
+            <form action="{{ route('disease.store.symptoms', encode($disease->id)) }}" method="POST">
                 @csrf
-                @method('PUT')
 
                 <div class="form-group">
-                    <label class="control-label">Kode Gejala</label>
-                    <input type="text" class="form-control" name="code" data-validate="required" value="{{ $symptom->code }}" placeholder="Contoh: G01" />
+                    <label class="control-label">Nama Gangguan</label>
+                    <input type="text" disabled class="form-control" name="name" data-validate="required" value="{{ $disease->name }}" placeholder="Contoh: P01" />
 
                     @if ($errors->has('code'))
                         <p class="text-danger">
@@ -37,36 +39,20 @@
                         </p>
                     @endif
                 </div>
-    
-                <div class="form-group">
-                    <label class="control-label">Nama Gejala</label>
-                    <input type="text" class="form-control" name="name" value="{{ $symptom->name }}" placeholder="Masukan Nama Gejala" />
-
-                    @if ($errors->has('name'))
-                        <p class="text-danger">
-                            {{ $errors->first('name') }}
-                        </p>
-                    @endif
-                </div>
-                
-                <div class="form-group">
-                    <label class="control-label">Pertanyaan</label>
-                    <input type="text" class="form-control" name="question" value="{{ $symptom->question }}" placeholder="Contoh: 'Apakah anak anda sering merasakan sakit leher?'" />
-
-                    @if ($errors->has('question'))
-                        <p class="text-danger">
-                            {{ $errors->first('question') }}
-                        </p>
-                    @endif
-                </div>
 
                 <div class="form-group">
-                    <label class="control-label">Deskripsi</label>
-                    <textarea class="form-control ckeditor" name="description">{{ $symptom->description }}</textarea>
+                    <label class="control-label">Pilih Gejala</label>
+                    <div>
+                        <select name="symptoms[]" class="select2" multiple>
+                            @foreach ($symptoms as $symptom)
+                                <option value="{{ $symptom->id }}">{{ $symptom->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-                    @if ($errors->has('description'))
+                    @if ($errors->has('symptoms'))
                         <p class="text-danger">
-                            {{ $errors->first('description') }}
+                            {{ $errors->first('symptoms') }}
                         </p>
                     @endif
                 </div>
@@ -108,6 +94,9 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/js/codemirror/lib/codemirror.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/js/uikit/css/uikit.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/js/uikit/addons/css/markdownarea.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('admin/assets/js/select2/select2-bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ asset('admin/assets/js/select2/select2.css') }}">
 
     <style>
         .modal-open {
@@ -242,4 +231,5 @@
     <script src="{{ asset('admin/assets/js/ckeditor/adapters/jquery.js') }}"></script>
     <script src="{{ asset('admin/assets/js/uikit/js/uikit.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/codemirror/lib/codemirror.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/select2/select2.min.js') }}"></script>
 @endpush

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Ubah Gejala')
+@section('title', 'Tambah Gangguan')
 
 @section('content')
 
@@ -9,27 +9,26 @@
             <a href="{{ route('admin.index') }}"><i class="fa-home"></i>Home</a>
         </li>
         <li>
-            <a href="{{ route('symptom.index') }}"><i class="fa-home"></i>Gejala</a>
+            <a href="{{ route('disease.index') }}"><i class="fa-home"></i>Gangguan</a>
         </li>
         <li class="active">
-            <strong>Ubah</strong>
+            <strong>Tambah</strong>
         </li>
     </ol>
 
-    <h2>Ubah Gejala</h2>
+    <h2>Tambah Gangguan</h2>
 
     <br />
 
     <!-- Main Content -->
     <div class="panel panel-primary">
         <div class="panel-body">
-            <form action="{{ route('symptom.update', encode($symptom->id)) }}" method="POST">
+            <form action="{{ route('disease.store') }}" method="POST">
                 @csrf
-                @method('PUT')
 
                 <div class="form-group">
-                    <label class="control-label">Kode Gejala</label>
-                    <input type="text" class="form-control" name="code" data-validate="required" value="{{ $symptom->code }}" placeholder="Contoh: G01" />
+                    <label class="control-label">Kode Gangguan</label>
+                    <input type="text" class="form-control" name="code" data-validate="required" value="{{ old('code') }}" placeholder="Contoh: P01" />
 
                     @if ($errors->has('code'))
                         <p class="text-danger">
@@ -39,8 +38,8 @@
                 </div>
     
                 <div class="form-group">
-                    <label class="control-label">Nama Gejala</label>
-                    <input type="text" class="form-control" name="name" value="{{ $symptom->name }}" placeholder="Masukan Nama Gejala" />
+                    <label class="control-label">Nama Gangguan</label>
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukan Nama Gangguan" />
 
                     @if ($errors->has('name'))
                         <p class="text-danger">
@@ -48,21 +47,34 @@
                         </p>
                     @endif
                 </div>
-                
-                <div class="form-group">
-                    <label class="control-label">Pertanyaan</label>
-                    <input type="text" class="form-control" name="question" value="{{ $symptom->question }}" placeholder="Contoh: 'Apakah anak anda sering merasakan sakit leher?'" />
 
-                    @if ($errors->has('question'))
+                {{-- <div class="form-group">
+                    <label class="control-label">Pilih Gejala</label>
+                    <div>
+                        <select name="symptoms[]" class="select2" multiple>
+                            <option value="3">Ohaio</option>
+                            <option value="2">Boston</option>
+                            <option value="5">Washington</option>
+                            <option value="1">Alabama</option>
+                            <option value="4">New York</option>
+                            <option value="12">Bostons</option>
+                            <option value="11">Alabama</option>
+                            <option value="13">Ohaio</option>
+                            <option value="14">New York</option>
+                            <option value="15">Washington II</option>
+                        </select>
+                    </div>
+
+                    @if ($errors->has('diseases'))
                         <p class="text-danger">
-                            {{ $errors->first('question') }}
+                            {{ $errors->first('diseases') }}
                         </p>
                     @endif
-                </div>
+                </div> --}}
 
                 <div class="form-group">
                     <label class="control-label">Deskripsi</label>
-                    <textarea class="form-control ckeditor" name="description">{{ $symptom->description }}</textarea>
+                    <textarea class="form-control ckeditor" name="description">{{ old("description") }}</textarea>
 
                     @if ($errors->has('description'))
                         <p class="text-danger">
@@ -108,6 +120,9 @@
     <link rel="stylesheet" href="{{ asset('admin/assets/js/codemirror/lib/codemirror.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/js/uikit/css/uikit.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/assets/js/uikit/addons/css/markdownarea.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('admin/assets/js/select2/select2-bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ asset('admin/assets/js/select2/select2.css') }}">
 
     <style>
         .modal-open {
@@ -242,4 +257,5 @@
     <script src="{{ asset('admin/assets/js/ckeditor/adapters/jquery.js') }}"></script>
     <script src="{{ asset('admin/assets/js/uikit/js/uikit.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/codemirror/lib/codemirror.js') }}"></script>
+    <script src="{{ asset('admin/assets/js/select2/select2.min.js') }}"></script>
 @endpush

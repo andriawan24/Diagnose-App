@@ -39,8 +39,8 @@
                     <span class="title">Gejala</span>
                 </a>
             </li>
-            <li>
-                <a href="index.html">
+            <li class="{{ Request::segment(2) == 'gangguan' ? 'active' : '' }}">
+                <a href="{{ route('disease.index') }}">
                     <i class="entypo-megaphone"></i>
                     <span class="title">Gangguan</span>
                 </a>
@@ -51,8 +51,8 @@
                     <span class="title">History Konsultasi</span>
                 </a>
             </li>
-            <li>
-                <a href="index.html">
+            <li class="{{ Request::segment(2) == 'artikel' ? 'active' : '' }}">
+                <a href="{{ route('article.index') }}">
                     <i class="entypo-newspaper"></i>
                     <span class="title">Artikel</span>
                 </a>

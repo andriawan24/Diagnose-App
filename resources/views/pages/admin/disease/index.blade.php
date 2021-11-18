@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Gejala')
+@section('title', 'Gangguan')
 
 @section('content')
 <!-- Main Content -->
@@ -8,11 +8,11 @@
         <a href="{{ route('admin.index') }}"><i class="fa-home"></i>Home</a>
     </li>
     <li class="active">
-        <strong>Gejala</strong>
+        <strong>Gangguan</strong>
     </li>
 </ol>
 
-<h2>Daftar Gejala</h2>
+<h2>Daftar Gangguan</h2>
 
 <br />
 
@@ -38,27 +38,30 @@
         <tr>
             <th>Kode</th>
             <th>Nama</th>
-            <th>Pertanyaan</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($symptoms as $symptom)
+        @foreach ($diseases as $disease)
         <tr>
-            <td>{{ $symptom->code }}</td>
-            <td>{{ $symptom->name }}</td>
-            <td>{{ $symptom->question }}</td>
+            <td>{{ $disease->code }}</td>
+            <td>{{ $disease->name }}</td>
             <td>
-                <a href="{{ route('symptom.edit', encode($symptom->id)) }}" class="btn btn-default btn-sm btn-icon icon-left">
+                <a href="{{ route('disease.show', encode($disease->id)) }}" class="btn btn-info btn-sm btn-icon icon-left">
+                    <i class="entypo-info"></i>
+                    Detail
+                </a>
+
+                <a href="{{ route('disease.edit', encode($disease->id)) }}" class="btn btn-default btn-sm btn-icon icon-left">
                     <i class="entypo-pencil"></i>
                     Edit
                 </a>
 
-                <div class="modal" id="modal-1-{{ $symptom->id }}">
+                <div class="modal" id="modal-1-{{ $disease->id }}">
                     <div>
                         <div>
                             <div>
-                                <h4>Apakah data gejala {{ $symptom->name }} akan dihapus?</h4>
+                                <h4>Apakah data Gangguan {{ $disease->name }} akan dihapus?</h4>
                             </div>
                             <div>
                                 <p>
@@ -66,7 +69,7 @@
                                 </p>
                             </div>
                             <div>
-                                <form action="{{ route('symptom.delete', encode($symptom->id)) }}" method="POST" class="form-inline">
+                                <form action="{{ route('disease.delete', encode($disease->id)) }}" method="POST" class="form-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-warning btn-block">Hapus</button>
@@ -76,7 +79,7 @@
                     </div>
                 </div>
                 
-                <a href="#modal-1-{{ $symptom->id }}" rel="modal:open" class="btn btn-danger btn-sm btn-icon icon-left">
+                <a href="#modal-1-{{ $disease->id }}" rel="modal:open" class="btn btn-danger btn-sm btn-icon icon-left">
                     <i class="entypo-cancel"></i>
                     Delete
                 </a>
@@ -88,7 +91,6 @@
         <tr>
             <th>Kode</th>
             <th>Nama</th>
-            <th>Pertanyaan</th>
             <th>Actions</th>
         </tr>
     </tfoot>
@@ -96,9 +98,9 @@
 
 <br />
 
-<a href="{{ route('symptom.add') }}" class="btn btn-primary">
+<a href="{{ route('disease.add') }}" class="btn btn-primary">
     <i class="entypo-plus"></i>
-    Tambah Gejala
+    Tambah Gangguan
 </a>
 @endsection
 

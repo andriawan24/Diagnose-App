@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Ubah Gejala')
+@section('title', 'Ubah Gangguan')
 
 @section('content')
 
@@ -9,27 +9,27 @@
             <a href="{{ route('admin.index') }}"><i class="fa-home"></i>Home</a>
         </li>
         <li>
-            <a href="{{ route('symptom.index') }}"><i class="fa-home"></i>Gejala</a>
+            <a href="{{ route('disease.index') }}"><i class="fa-home"></i>Gangguan</a>
         </li>
         <li class="active">
             <strong>Ubah</strong>
         </li>
     </ol>
 
-    <h2>Ubah Gejala</h2>
+    <h2>Ubah Gangguan</h2>
 
     <br />
 
     <!-- Main Content -->
     <div class="panel panel-primary">
         <div class="panel-body">
-            <form action="{{ route('symptom.update', encode($symptom->id)) }}" method="POST">
+            <form action="{{ route('disease.update', encode($disease->id)) }}" method="POST">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <label class="control-label">Kode Gejala</label>
-                    <input type="text" class="form-control" name="code" data-validate="required" value="{{ $symptom->code }}" placeholder="Contoh: G01" />
+                    <label class="control-label">Kode Gangguan</label>
+                    <input type="text" class="form-control" name="code" data-validate="required" value="{{ $disease->code }}" placeholder="Contoh: G01" />
 
                     @if ($errors->has('code'))
                         <p class="text-danger">
@@ -39,8 +39,8 @@
                 </div>
     
                 <div class="form-group">
-                    <label class="control-label">Nama Gejala</label>
-                    <input type="text" class="form-control" name="name" value="{{ $symptom->name }}" placeholder="Masukan Nama Gejala" />
+                    <label class="control-label">Nama Gangguan</label>
+                    <input type="text" class="form-control" name="name" value="{{ $disease->name }}" placeholder="Masukan Nama Gangguan" />
 
                     @if ($errors->has('name'))
                         <p class="text-danger">
@@ -48,21 +48,10 @@
                         </p>
                     @endif
                 </div>
-                
-                <div class="form-group">
-                    <label class="control-label">Pertanyaan</label>
-                    <input type="text" class="form-control" name="question" value="{{ $symptom->question }}" placeholder="Contoh: 'Apakah anak anda sering merasakan sakit leher?'" />
-
-                    @if ($errors->has('question'))
-                        <p class="text-danger">
-                            {{ $errors->first('question') }}
-                        </p>
-                    @endif
-                </div>
 
                 <div class="form-group">
                     <label class="control-label">Deskripsi</label>
-                    <textarea class="form-control ckeditor" name="description">{{ $symptom->description }}</textarea>
+                    <textarea class="form-control ckeditor" name="description">{{ $disease->description }}</textarea>
 
                     @if ($errors->has('description'))
                         <p class="text-danger">

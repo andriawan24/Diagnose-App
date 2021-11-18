@@ -39,7 +39,7 @@
     
                 <div class="form-group">
                     <label class="control-label">Nama Gejala</label>
-                    <input type="text" class="form-control" name="name" placeholder="Masukan Nama Gejala" />
+                    <input type="text" class="form-control" value="{{ old('name') }}" name="name" placeholder="Masukan Nama Gejala" />
 
                     @if ($errors->has('name'))
                         <p class="text-danger">
@@ -50,7 +50,7 @@
                 
                 <div class="form-group">
                     <label class="control-label">Pertanyaan</label>
-                    <input type="text" class="form-control" name="question" placeholder="Contoh: 'Apakah anak anda sering merasakan sakit leher?'" />
+                    <input type="text" class="form-control" name="question" value="{{ old('question') }}" placeholder="Contoh: 'Apakah anak anda sering merasakan sakit leher?'" />
 
                     @if ($errors->has('question'))
                         <p class="text-danger">
@@ -61,8 +61,7 @@
 
                 <div class="form-group">
                     <label class="control-label">Deskripsi</label>
-                    <textarea class="form-control ckeditor" name="description">
-                    </textarea>
+                    <textarea class="form-control ckeditor" name="description">{{ old("description") }}</textarea>
 
                     @if ($errors->has('description'))
                         <p class="text-danger">
