@@ -173,7 +173,7 @@
                 <!--end ts-title-->
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="assets/img/icon-wallet.png" alt="" class="mw-100 mb-4">
+                        <img src="{{ asset('frontend/assets/img/icon-wallet.png') }}" alt="" class="mw-100 mb-4">
                         <h3>Easy Payments</h3>
                         <p>
                             Aenean ut orci mattis, rhoncus velit interdum, molestie mi
@@ -181,7 +181,7 @@
                     </div>
                     <!--end col-md-4-->
                     <div class="col-md-4">
-                        <img src="assets/img/icon-cloud.png" alt="" class="mw-100 mb-4">
+                        <img src="{{ asset('frontend/assets/img/icon-cloud.png') }}" alt="" class="mw-100 mb-4">
                         <h3>Secure Cloud</h3>
                         <p>
                             Uis commodo arcu at egestas vehicula. Maecenas auctor
@@ -189,7 +189,7 @@
                     </div>
                     <!--end col-md-4-->
                     <div class="col-md-4">
-                        <img src="assets/img/icon-laptop.png" alt="" class="mw-100 mb-4">
+                        <img src="{{ asset('frontend/assets/img/icon-laptop.png') }}" alt="" class="mw-100 mb-4">
                         <h3>Responsive</h3>
                         <p>
                             Integer tempus interdum felis, ut luctus nunc.
@@ -225,69 +225,6 @@
                 <!--end row-->
             </section>
             <!--end section-->
-            <section>
-                <div class="ts-title">
-                    <h2>Contact</h2>
-                </div>
-                <!--end ts-tile-->
-                <h3>Map</h3>
-                <div class="map ts-height__200px mb-5" id="map"></div>
-                <!--end map-->
-                <div class="row">
-                    <div class="col-xl-4">
-                        <h3>Address</h3>
-                        <address>
-                            4758 Nancy Street
-                            <br>
-                            +1 919-571-2528
-                            <br>
-                            <a href="#">hello@example.com</a>
-                        </address>
-                    </div>
-                    <!--end col-xl-4-->
-                    <div class="col-xl-8">
-                        <h3>Contact Form</h3>
-                        <form id="form-contact" class="ts-form ts-form-email ts-inputs__transparent" data-php-path="assets/php/email.php">
-                            <div class="row">
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" id="form-contact-name" name="name" placeholder="Your Name" required>
-                                    </div>
-                                    <!--end form-group -->
-                                </div>
-                                <!--end col-md-6 col-sm-6 -->
-                                <div class="col-md-6 col-sm-6">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="form-contact-email" name="email" placeholder="Your Email" required>
-                                    </div>
-                                    <!--end form-group -->
-                                </div>
-                                <!--end col-md-6 col-sm-6 -->
-                            </div>
-                            <!--end row -->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea class="form-control" id="form-contact-message" rows="6" name="message" placeholder="Your Message" required></textarea>
-                                    </div>
-                                    <!--end form-group -->
-                                </div>
-                                <!--end col-md-12 -->
-                            </div>
-                            <!--end row -->
-                            <div class="form-group clearfix">
-                                <button type="submit" class="btn float-right btn-outline-primary" id="form-contact-submit">Send a Message</button>
-                            </div>
-                            <!--end form-group -->
-                            <div class="form-contact-status"></div>
-                        </form>
-                        <!--end form-contact -->
-                    </div>
-                    <!--end col-xl-8-->
-                </div>
-                <!--end row-->
-            </section>
-            <!--end section-->
         </div>
         <!--end container-fluid-->
     </div>
@@ -301,7 +238,6 @@
 	<script src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
 	<script src="{{ asset('frontend/assets/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="http://maps.google.com/maps/api/js?key=AIzaSyBEDfNcQRmKQEyulDN8nGWjLYPm8s4YB58"></script>
     <script src="{{ asset('frontend/assets/js/waterpipe.js') }}"></script>
     <script src="{{ asset('frontend/assets/js/jquery.magnific-popup.min.js') }}"></script>
 	<script src="{{ asset('frontend/assets/js/jquery.countdown.min.js') }}"></script>
@@ -313,14 +249,6 @@
     <!--Google map-->
 
     <script>
-        var latitude = 34.038405;
-        var longitude = -117.946944;
-        var markerImage = "{{ asset('frontend/assets/img/map-marker.png') }}";
-        var mapElement = "map";
-        //var mapStyle = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels.text","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#dbdbdb"},{"visibility":"on"}]}];
-        var mapStyle = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]}]
-        google.maps.event.addDomListener(window, 'load', simpleMap(latitude, longitude, markerImage, mapStyle, mapElement));
-
         var smokyBG = $('#ts-waterpipe-bg').waterpipe({
             gradientStart: '#00c7ee',
             gradientEnd: '#c380ff',

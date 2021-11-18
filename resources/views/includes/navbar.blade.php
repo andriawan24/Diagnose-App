@@ -27,7 +27,7 @@
                 <form action="{{ route('logout') }}" id="form-logout" method="POST" class="form-inline d-none">
                     @csrf
                 </form>
-                <a href="javascript:;" onclick="event.preventDefault(); $('form#form-logout').submit();">
+                <a href="javascript:;" onclick="jQuery('#form-logout').submit();">
                     Log Out <i class="entypo-logout right"></i>
                 </a>
             </li>

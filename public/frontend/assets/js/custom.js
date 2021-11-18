@@ -5,8 +5,6 @@ var resizeId;
 var marqueeInitialized = 0;
 
 $(document).ready(function($) {
-    "use strict";
-
     $("body").imagesLoaded( function() {
         $("body").addClass("loading-done");
         var $animatedWaves = $(".ts-animated-waves");
