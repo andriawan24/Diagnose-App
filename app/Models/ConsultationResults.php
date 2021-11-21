@@ -11,6 +11,7 @@ class ConsultationResults extends Model
 
     protected $fillable = [
         'consultants_id',
+        'diseases_id',
         'possibility'
     ];
 }

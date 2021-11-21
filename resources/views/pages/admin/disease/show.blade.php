@@ -108,7 +108,7 @@
                                                 <div>
                                                     <div class="form-group">
                                                         <label class="control-label">Nilai MB</label>
-                                                        <input type="number" step=".10" class="form-control" name="mb" data-validate="required" value="{{ $symptom->mb }}" placeholder="Contoh: G01" />
+                                                        <input type="number" step=".01" class="form-control" name="mb" data-validate="required" value="{{ $symptom->mb }}" placeholder="Contoh: G01" />
                                     
                                                         @if ($errors->has('mb'))
                                                             <p class="text-danger">
@@ -119,7 +119,7 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label">Nilai MD</label>
-                                                        <input type="number" step=".10" class="form-control" name="md" data-validate="required" value="{{ $symptom->md }}" placeholder="Contoh: G01" />
+                                                        <input type="number" step=".01" class="form-control" name="md" data-validate="required" value="{{ $symptom->md }}" placeholder="Contoh: G01" />
                                     
                                                         @if ($errors->has('md'))
                                                             <p class="text-danger">
