@@ -26,7 +26,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login'])->name('login.post');
 
-Route::prefix('admin')->middleware('auth:sanctum')->group(function() {
+Route::prefix('admin-area')->middleware('auth:sanctum')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
 
     // Symptom
@@ -39,7 +39,7 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function() {
 
     // Disease
     Route::get('/gangguan', [DiseaseController::class, 'index'])->name('disease.index');
-    Route::get('/gangguan/{id}', [DiseaseController::class, 'show'])->name('disease.show');
+    Route::get('/gangguan/detail/{id}', [DiseaseController::class, 'show'])->name('disease.show');
     Route::get('/gangguan/tambah', [DiseaseController::class, 'add'])->name('disease.add');
     Route::post('/gangguan/tambah', [DiseaseController::class, 'store'])->name('disease.store');
     Route::get('/gangguan/edit/{id}', [DiseaseController::class, 'edit'])->name('disease.edit');

@@ -145,7 +145,7 @@
 
             <a href="{{ route('disease.add.symptoms', encode($disease->id)) }}" class="btn btn-primary">
                 <i class="entypo-plus"></i>
-                Tambah Gangguan
+                Tambah Gejala {{ $disease->name }}
             </a>
         </div>
     </div>
