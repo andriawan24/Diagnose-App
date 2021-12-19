@@ -15,4 +15,8 @@ class Consultation extends Model
         'name',
         'age'
     ];
+
+    public function results() {
+        return $this->hasMany(ConsultationResults::class, 'consultants_id', 'id');
+    }
 }
