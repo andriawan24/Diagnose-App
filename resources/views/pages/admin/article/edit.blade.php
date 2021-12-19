@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', 'Ubah Gejala')
+@section('title', 'Ubah Artikel')
 
 @section('content')
 
@@ -9,60 +9,116 @@
             <a href="{{ route('admin.index') }}"><i class="fa-home"></i>Home</a>
         </li>
         <li>
-            <a href="{{ route('symptom.index') }}"><i class="fa-home"></i>Gejala</a>
+            <a href="{{ route('article.index') }}"><i class="fa-home"></i>Artikel</a>
         </li>
         <li class="active">
             <strong>Ubah</strong>
         </li>
     </ol>
 
-    <h2>Ubah Gejala</h2>
+    <h2>Ubah Artikel</h2>
 
     <br />
 
     <!-- Main Content -->
     <div class="panel panel-primary">
         <div class="panel-body">
-            <form action="{{ route('symptom.update', encode($symptom->id)) }}" method="POST">
+            <form action="{{ route('article.update', encode($article->id)) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <div class="form-group">
-                    <label class="control-label">Kode Gejala</label>
-                    <input type="text" class="form-control" name="code" data-validate="required" value="{{ $symptom->code }}" placeholder="Contoh: G01" />
+                    <label class="col-sm-3 control-label">Thumbnail Artikel</label>
+                    
+                    <div class="col-sm-9">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 300px; height: 150px;" data-trigger="fileinput">
+                                <img src="{{ url('images/article/' . $article->thumbnail_image) }}" alt="...">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 300px; max-height: 150px"></div>
+                            <div>
+                                <span class="btn btn-white btn-file">
+                                    <span class="fileinput-new">Pilih Gambar</span>
+                                    <span class="fileinput-exists">Ganti Gambar</span>
+                                    <input type="file" name="thumbnail_image" accept="image/*">
+                                </span>
+                                <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
 
-                    @if ($errors->has('code'))
+                        @if ($errors->has('thumbnail_image'))
+                            <p class="text-danger">
+                                {{ $errors->first('thumbnail_image') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Judul</label>
+                    <input type="text" class="form-control" name="title" data-validate="required" value="{{ $article->title }}" placeholder="Masukan Judul Artikel" />
+
+                    @if ($errors->has('title'))
                         <p class="text-danger">
-                            {{ $errors->first('code') }}
+                            {{ $errors->first('title') }}
                         </p>
                     @endif
                 </div>
     
                 <div class="form-group">
-                    <label class="control-label">Nama Gejala</label>
-                    <input type="text" class="form-control" name="name" value="{{ $symptom->name }}" placeholder="Masukan Nama Gejala" />
+                    <label class="control-label">Penulis</label>
+                    <input type="text" class="form-control" value="{{ $article->author }}" name="author" placeholder="Masukan Nama Penulis" />
 
-                    @if ($errors->has('name'))
+                    @if ($errors->has('author'))
                         <p class="text-danger">
-                            {{ $errors->first('name') }}
+                            {{ $errors->first('author') }}
                         </p>
                     @endif
                 </div>
                 
                 <div class="form-group">
-                    <label class="control-label">Pertanyaan</label>
-                    <input type="text" class="form-control" name="question" value="{{ $symptom->question }}" placeholder="Contoh: 'Apakah anak anda sering merasakan sakit leher?'" />
+                    <label class="control-label">Penerbit</label>
+                    <input type="text" class="form-control" name="publisher" value="{{ $article->publisher }}" placeholder="Masukan Nama Penerbit" />
 
-                    @if ($errors->has('question'))
+                    @if ($errors->has('publisher'))
                         <p class="text-danger">
-                            {{ $errors->first('question') }}
+                            {{ $errors->first('publisher') }}
+                        </p>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Tanggal Terbit</label>
+                    <input type="date" class="form-control" name="published_at" value="{{ date('d-m-Y', strtotime($article->published_at)) }}" />
+
+                    @if ($errors->has('published_at'))
+                        <p class="text-danger">
+                            {{ $errors->first('published_at') }}
+                        </p>
+                    @endif
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Pilih Kategori</label>
+                    <div>
+                        <select name="article_categories_id" class="select2" data-allow-clear="true" data-placeholder="Pilih kategori artikel...">
+                            <option></option>
+                            @foreach ($categories as $category)
+                                <option {{ ($article->article_categories_id == $category->id) ? 'selected' : '' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    @if ($errors->has('article_categories_id'))
+                        <p class="text-danger">
+                            {{ $errors->first('article_categories_id') }}
                         </p>
                     @endif
                 </div>
 
                 <div class="form-group">
                     <label class="control-label">Deskripsi</label>
-                    <textarea class="form-control ckeditor" name="description">{{ $symptom->description }}</textarea>
+                    <textarea class="form-control ckeditor" name="description">{{ $article->description }}</textarea>
 
                     @if ($errors->has('description'))
                         <p class="text-danger">
@@ -242,4 +298,7 @@
     <script src="{{ asset('admin/assets/js/ckeditor/adapters/jquery.js') }}"></script>
     <script src="{{ asset('admin/assets/js/uikit/js/uikit.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/codemirror/lib/codemirror.js') }}"></script>
+
+    <!-- Imported scripts on this page -->
+	<script src="{{ asset('admin/assets/js/fileinput.js') }}"></script>
 @endpush

@@ -25,7 +25,7 @@ class SymptomController extends Controller
 
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
-            'code' => ['required', 'unique:symptoms,code'],
+            'code' => ['required'],
             'name' => ['required'],
             'question' => ['required', 'ends_with:?'],
             'description' => ['required']
@@ -53,7 +53,7 @@ class SymptomController extends Controller
 
     public function update(Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'code' => ['required', 'unique:symptoms,code'],
+            'code' => ['required'],
             'name' => ['required'],
             'question' => ['required', 'ends_with:?'],
             'description' => ['required']

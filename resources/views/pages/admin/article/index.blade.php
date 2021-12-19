@@ -41,6 +41,7 @@
             <th>Penerbit</th>
             <th>Tanggal Terbit</th>
             <th>Kategori</th>
+            <th>Thumbnail</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -52,6 +53,7 @@
             <td>{{ $article->publisher }}</td>
             <td>{{ date('d F Y', strtotime($article->published_at)) }}</td>
             <td>{{ $article->category->name }}</td>
+            <td><img src="{{ url('images/article/' . $article->thumbnail_image) }}" alt="Thumbnail" width="200"></td>
             <td>
                 <a href="{{ route('article.edit', encode($article->id)) }}" class="btn btn-default btn-sm btn-icon icon-left">
                     <i class="entypo-pencil"></i>
@@ -95,6 +97,7 @@
             <th>Penerbit</th>
             <th>Tanggal Terbit</th>
             <th>Kategori</th>
+            <th>Thumbnail</th>
             <th>Actions</th>
         </tr>
     </tfoot>

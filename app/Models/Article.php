@@ -17,6 +17,7 @@ class Article extends Model
         'published_at',
         'description',
         'article_categories_id',
+        'thumbnail_image',
     ];
 
     public function category() {

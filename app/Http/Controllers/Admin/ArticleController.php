@@ -33,6 +33,7 @@ class ArticleController extends Controller
             'publisher' => ['required'],
             'published_at' => ['required'],
             'description' => ['required'],
+            'thumbnail_image' => ['required'],
             'article_categories_id' => ['required'],
         ]);
 
@@ -40,30 +41,38 @@ class ArticleController extends Controller
             return redirect()->back()->with('error', 'Silahkan periksa kembali data')->withInput()->withErrors($validator);
         }
 
+        $imageName = time() . '.' . $request->thumbnail_image->extension();
+
+        $request->thumbnail_image->move(public_path('images/article'), $imageName);
+
         $article = Article::create([
             'title' => $request->title,
             'author' => $request->author,
             'publisher' => $request->publisher,
             'published_at' => $request->published_at,
             'description' => $request->description,
+            'thumbnail_image' => $imageName,
             'article_categories_id' => $request->article_categories_id,
         ]);
 
-        return redirect()->route('article.index')->with('success', "Artikel " . $article->code . " Berhasil ditambahkan");
+        return redirect()->route('article.index')->with('success', "Artikel " . $article->name . " Berhasil ditambahkan");
     }
 
     public function edit($id) {
+        $categories = ArticleCategory::all();
         $article = Article::findOrFail(decode($id));
 
-        return view('pages.admin.article.edit', ['article' => $article]);
+        return view('pages.admin.article.edit', ['article' => $article, 'categories' => $categories]);
     }
 
     public function update(Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'code' => ['required', 'unique:articles,code'],
-            'name' => ['required'],
-            'question' => ['required', 'ends_with:?'],
-            'description' => ['required']
+            'title' => ['required'],
+            'author' => ['required'],
+            'publisher' => ['required'],
+            'published_at' => ['required'],
+            'description' => ['required'],
+            'article_categories_id' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -71,16 +80,27 @@ class ArticleController extends Controller
         }
 
         $data = [
-            'code' => $request->code,
-            'name' => $request->name,
-            'question' => $request->question,
-            'description' => $request->description
+            'title' => $request->title,
+            'author' => $request->author,
+            'publisher' => $request->publisher,
+            'published_at' => $request->published_at,
+            'description' => $request->description,
+            'article_categories_id' => $request->article_categories_id,
         ];
 
         $article = Article::findOrFail(decode($id));
+
+        if ($request->thumbnail_image) {
+            $imageName = $article->thumbnail_image;
+
+            $request->thumbnail_image->move(public_path('images/article'), $imageName);
+
+            $data['thumbnail_image'] = $imageName;
+        }
+
         $article->update($data);
 
-        return redirect()->route('article.index')->with('success', "Artikel " . $article->code . " Berhasil diubah");
+        return redirect()->route('article.index')->with('success', "Artikel " . $article->name . " Berhasil diubah");
     }
 
     public function delete($id) {
@@ -88,6 +108,6 @@ class ArticleController extends Controller
 
         $article->delete();
 
-        return redirect()->route('article.index')->with('success', "Artikel " . $article->code . " Berhasil dihapus");
+        return redirect()->route('article.index')->with('success', "Artikel " . $article->name . " Berhasil dihapus");
     }
 }

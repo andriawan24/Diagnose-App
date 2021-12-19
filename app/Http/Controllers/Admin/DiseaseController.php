@@ -41,7 +41,7 @@ class DiseaseController extends Controller
 
     public function store(Request $request) {
         $validator = Validator::make($request->all(), [
-            'code' => ['required', 'unique:diseases,code'],
+            'code' => ['required'],
             'name' => ['required'],
             'description' => ['required']
         ]);
@@ -67,7 +67,7 @@ class DiseaseController extends Controller
 
     public function update(Request $request, $id) {
         $validator = Validator::make($request->all(), [
-            'code' => ['required', 'unique:diseases,code'],
+            'code' => ['required'],
             'name' => ['required'],
             'description' => ['required']
         ]);

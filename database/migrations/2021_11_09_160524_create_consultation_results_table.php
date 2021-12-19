@@ -16,6 +16,7 @@ class CreateConsultationResultsTable extends Migration
         Schema::create('consultation_results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('consultants_id');
+            $table->foreignId('diseases_id');
             $table->float('possibility');
             $table->timestamps();
         });

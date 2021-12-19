@@ -45,8 +45,8 @@
                     <span class="title">Gangguan</span>
                 </a>
             </li>
-            <li>
-                <a href="index.html">
+            <li class="{{ Request::segment(2) == 'konsultasi' ? 'active' : '' }}">
+                <a href="{{ route('consultation.index') }}">
                     <i class="entypo-list"></i>
                     <span class="title">History Konsultasi</span>
                 </a>
@@ -55,6 +55,12 @@
                 <a href="{{ route('article.index') }}">
                     <i class="entypo-newspaper"></i>
                     <span class="title">Artikel</span>
+                </a>
+            </li>
+            <li class="{{ Request::segment(2) == 'kategori-artikel' ? 'active' : '' }}">
+                <a href="{{ route('article-category.index') }}">
+                    <i class="entypo-newspaper"></i>
+                    <span class="title">Kategori Artikel</span>
                 </a>
             </li>
         </ul>

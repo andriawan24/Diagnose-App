@@ -23,8 +23,35 @@
     <!-- Main Content -->
     <div class="panel panel-primary">
         <div class="panel-body">
-            <form action="{{ route('article.store') }}" method="POST">
+            <form action="{{ route('article.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Thumbnail Artikel</label>
+                    
+                    <div class="col-sm-9">
+                        <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput-new thumbnail" style="width: 300px; height: 150px;" data-trigger="fileinput">
+                                <img src="http://placehold.it/300x150" alt="...">
+                            </div>
+                            <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 300px; max-height: 150px"></div>
+                            <div>
+                                <span class="btn btn-white btn-file">
+                                    <span class="fileinput-new">Pilih Gambar</span>
+                                    <span class="fileinput-exists">Ganti Gambar</span>
+                                    <input type="file" name="thumbnail_image" accept="image/*">
+                                </span>
+                                <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+
+                        @if ($errors->has('thumbnail_image'))
+                            <p class="text-danger">
+                                {{ $errors->first('thumbnail_image') }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="control-label">Judul</label>
@@ -274,4 +301,6 @@
     <script src="{{ asset('admin/assets/js/uikit/js/uikit.min.js') }}"></script>
     <script src="{{ asset('admin/assets/js/codemirror/lib/codemirror.js') }}"></script>
     <script src="{{ asset('admin/assets/js/select2/select2.min.js') }}"></script>
+    <!-- Imported scripts on this page -->
+	<script src="{{ asset('admin/assets/js/fileinput.js') }}"></script>
 @endpush

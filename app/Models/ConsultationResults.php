@@ -11,6 +11,11 @@ class ConsultationResults extends Model
 
     protected $fillable = [
         'consultants_id',
+        'diseases_id',
         'possibility'
     ];
+
+    public function disease() {
+        return $this->hasOne(Disease::class, 'id', 'diseases_id');
+    }
 }

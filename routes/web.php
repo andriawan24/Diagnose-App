@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\ArticleCategoryController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ConsultationController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DiseaseController;
 use App\Http\Controllers\Admin\SymptomController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Livewire\LoginComponent;
@@ -26,7 +29,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login'])->name('login.post');
 
-Route::prefix('admin')->middleware('auth:sanctum')->group(function() {
+Route::prefix('admin-area')->middleware('auth:sanctum')->group(function() {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
 
     // Symptom
@@ -39,7 +42,7 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function() {
 
     // Disease
     Route::get('/gangguan', [DiseaseController::class, 'index'])->name('disease.index');
-    Route::get('/gangguan/{id}', [DiseaseController::class, 'show'])->name('disease.show');
+    Route::get('/gangguan/detail/{id}', [DiseaseController::class, 'show'])->name('disease.show');
     Route::get('/gangguan/tambah', [DiseaseController::class, 'add'])->name('disease.add');
     Route::post('/gangguan/tambah', [DiseaseController::class, 'store'])->name('disease.store');
     Route::get('/gangguan/edit/{id}', [DiseaseController::class, 'edit'])->name('disease.edit');
@@ -57,6 +60,17 @@ Route::prefix('admin')->middleware('auth:sanctum')->group(function() {
     Route::get('/artikel/edit/{id}', [ArticleController::class, 'edit'])->name('article.edit');
     Route::put('/artikel/edit/{id}', [ArticleController::class, 'update'])->name('article.update');
     Route::delete('/artikel/hapus/{id}', [ArticleController::class, 'delete'])->name('article.delete');
+
+    // Article Categories
+    Route::get('/kategori-artikel', [ArticleCategoryController::class, 'index'])->name('article-category.index');
+    Route::get('/kategori-artikel/tambah', [ArticleCategoryController::class, 'add'])->name('article-category.add');
+    Route::post('/kategori-artikel/tambah', [ArticleCategoryController::class, 'store'])->name('article-category.store');
+    Route::get('/kategori-artikel/edit/{id}', [ArticleCategoryController::class, 'edit'])->name('article-category.edit');
+    Route::put('/kategori-artikel/edit/{id}', [ArticleCategoryController::class, 'update'])->name('article-category.update');
+    Route::delete('/kategori-artikel/hapus/{id}', [ArticleCategoryController::class, 'delete'])->name('article-category.delete');
+
+    // Consultations
+    Route::get('/konsultasi', [ConsultationController::class, 'index'])->name('consultation.index');
 });
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
