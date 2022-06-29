@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Divergent Team">
 
+    <link rel="icon" href="{{ asset('images/logo.png') }}">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600">
     <link rel="stylesheet" href="{{ asset('frontend/assets/bootstrap/css/bootstrap.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/assets/font-awesome/css/fontawesome-all.min.css') }}">
@@ -21,7 +23,7 @@
             <header id="header">
                 <nav class="navbar navbar-dark ts-separate-bg-element">
                     <a class="navbar-brand" href="#">
-                        <img src="{{ asset('admin/assets/images/logo@2x.png') }}" height="30px" alt="">
+                        <img src="{{ asset('images/logo.png') }}" height="80px" alt="">
                     </a>
                     <!--end navbar-brand-->
                     <button class="navbar-toggler ts-open-side-panel" type="button" aria-label="Toggle navigation">
@@ -40,7 +42,7 @@
                         <div class="col-md-6">
                             <h1>Bersiap untuk peluncuran</h1>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse viverra lectus neque.
+                                MEND: Mentality Disorder Detection for Child by Divergent.
                             </p>
                             <form class="ts-form ts-form-email" data-php-path="assets/php/email.php">
                                 <div class="row">
@@ -52,7 +54,7 @@
                                     </div>
                                     <!--end col-md-10-->
                                     <div class="col-md-3">
-                                        <button type="submit" class="btn btn-primary w-100">Subscribe</button>
+                                        <a href="https://drive.google.com/file/d/1dIJjhV40r9MR6GTWUaN7m3EDjTuc1U3A/view?usp=sharing" target="_blank" class="btn btn-primary">Download</a>
                                     </div>
                                     <!--end col-md-2-->
                                 </div>
@@ -64,7 +66,7 @@
                         <!--Count Down-->
                         <div class="col-md-6">
                             <div class="text-center my-4">
-                                <div class="ts-count-down" data-date="January 20, 2022 15:03:26"></div>
+                                <div class="ts-count-down" data-date="December 29, 2021 00:00:00"></div>
                                 <!--end ts-count-down-->
                             </div>
                         </div>
@@ -114,23 +116,21 @@
         <div class="container-fluid">
             <section>
                 <div class="ts-title">
-                    <h2>Tentang Kami</h2>
+                    <h2>About Us</h2>
                 </div>
                 <!--end ts-title-->
                 <p>
-                    Uis commodo arcu at egestas vehicula. Maecenas auctor sagittis nulla laoreet vestibulum.
-                    Vivamus congue diam blandit quam efficitur, vel mattis lacus feugiat. Integer tempus interdum felis,
-                    ut luctus nunc.
+                    We are attend to help you to solve the problem that is happening to your child. You can call us as Divergent. Divergent is a team consisting of 4 member, let we introduce ourself.     
                 </p>
                 <div class="row">
                     <div class="col-sm-6 col-xl-4">
                         <div class="d-flex align-items-center my-3">
                             <div class="ts-circle__md">
-                                <figure class="ts-background-image" data-bg-image="{{ asset('admin/assets/images/logo.png') }}"></figure>
+                                <figure class="ts-background-image" data-bg-image="{{ asset('admin/asssets/images/logo.png') }}"></figure>
                             </div>
                             <div class="ml-3">
-                                <h3 class="mb-0">Jane Doe</h3>
-                                <h5 class="ts-opacity__50">Company CEO</h5>
+                                <h3 class="mb-0">Naufal Fawwaz Andriawan</h3>
+                                <h5 class="ts-opacity__50">Ketua</h5>
                             </div>
                         </div>
                         <!--end d-flex-->
@@ -142,8 +142,8 @@
                                 <figure class="ts-background-image" data-bg-image="assets/img/person-02.jpg"></figure>
                             </div>
                             <div class="ml-3">
-                                <h3 class="mb-0">Peter Browns</h3>
-                                <h5 class="ts-opacity__50">Marketing Guru</h5>
+                                <h3 class="mb-0">Nassya Putri Riyani</h3>
+                                <h5 class="ts-opacity__50">Anggota</h5>
                             </div>
                         </div>
                         <!--end d-flex-->
@@ -155,8 +155,34 @@
                                 <figure class="ts-background-image" data-bg-image="assets/img/person-04.jpg"></figure>
                             </div>
                             <div class="ml-3">
-                                <h3 class="mb-0">Susane Erwing</h3>
-                                <h5 class="ts-opacity__50">Support</h5>
+                                <h3 class="mb-0">Azzahra Ayu Vahendra</h3>
+                                <h5 class="ts-opacity__50">Anggota</h5>
+                            </div>
+                        </div>
+                        <!--end d-flex-->
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="d-flex align-items-center my-3">
+                            <div class="ts-circle__md">
+                                <figure class="ts-background-image" data-bg-image="assets/img/person-04.jpg"></figure>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="mb-0">Dhafin Taufiqi</h3>
+                                <h5 class="ts-opacity__50">Anggota</h5>
+                            </div>
+                        </div>
+                        <!--end d-flex-->
+                    </div>
+                    <!--end col-md-4-->
+                    <div class="col-sm-6 col-xl-4">
+                        <div class="d-flex align-items-center my-3">
+                            <div class="ts-circle__md">
+                                <figure class="ts-background-image" data-bg-image="assets/img/person-04.jpg"></figure>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="mb-0">Aryaputra Haidar Akbar</h3>
+                                <h5 class="ts-opacity__50">Anggota</h5>
                             </div>
                         </div>
                         <!--end d-flex-->
@@ -166,7 +192,7 @@
                 <!--end row-->
             </section>
             <!--end section-->
-            <section>
+            {{-- <section>
                 <div class="ts-title">
                     <h2>Features</h2>
                 </div>
@@ -198,7 +224,7 @@
                     <!--end col-md-4-->
                 </div>
                 <!--end row-->
-            </section>
+            </section> --}}
             <!--end section-->
             <section>
                 <div class="ts-title">
@@ -206,19 +232,10 @@
                 </div>
                 <!--end ts-title-->
                 <div class="row">
-                    <div class="col-md-12 col-xl-4">
+                    <div class="col-md-12 col-xl-12">
                         <p>
-                            Nam rhoncus elit ut nibh sagittis varius. Maecenas aliquam ex ut magna cursus pulvinar
+                            This website is provide for check Mentality Disorders Detection for Child. From MEND, you will know what disorders that happened base on the symptoms that appear.
                         </p>
-                        <ul>
-                            <li>Nulla facilisi</li>
-                            <li>Donec fringilla dui</li>
-                            <li>Dapibus, ut placerat</li>
-                        </ul>
-                    </div>
-                    <!--end col-xl-4-->
-                    <div class="col-md-12 col-xl-8">
-                        <img src="assets/img/image-01.jpg" alt="" class="mw-100">
                     </div>
                     <!--end col-xl-8-->
                 </div>
